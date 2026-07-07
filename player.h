@@ -13,5 +13,4 @@ class Player {
         void move(int x, int y);
 };
 
-
 #endif
