@@ -2,11 +2,13 @@
 #include "player.h"
 
 Map::Map() : tiles{
+
     "##########",
     "#........#",
     "#........#",
     "#........#",
     "##########"
+    
 } {}
 
 void Map::draw(const Player& player) const {
@@ -20,4 +22,11 @@ void Map::draw(const Player& player) const {
         }
         std::cout << '\n';
     }
+}
+
+bool Map::isWall (int x, int y) {
+
+    if (tiles.at(y).at(x) == '#')
+        return true;
+    return false;
 }
