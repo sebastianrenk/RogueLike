@@ -15,5 +15,6 @@ class Game {
         Game(bool running = true);
         void handleInput(char c);
         void run();
-        bool gotHit();
+        bool gotHit() const;
+        bool reachedGoal() const;
 };

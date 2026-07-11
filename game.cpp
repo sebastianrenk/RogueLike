@@ -36,12 +36,19 @@ void Game::handleInput(char c) {
         player.move(targetX, targetY);
 }
 
-bool Game::gotHit() {
+bool Game::gotHit() const{
 
     for (const auto& m : monsters) {
         if (player.getX() == m.getX() && player.getY() == m.getY())
             return true;
     }
+    return false;
+}
+
+bool Game::reachedGoal() const {
+
+    if (map.isGoal(player.getX(), player.getY()))
+        return true;
     return false;
 }
 
@@ -55,8 +62,12 @@ void Game::run() {
         char input;
         std::cin >> input;
         handleInput(input);
+        
         if (gotHit()) {
-            std::cout << "==========YOU DIED==========\n";
+            std::cout << "========== YOU DIED ==========\n";
+            running = false;
+        } else if (reachedGoal()) {
+            std::cout << "========== YOU WON ==========\n";
             running = false;
         } else {
             for (int i{0}; i < 50; ++i)

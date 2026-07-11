@@ -15,6 +15,7 @@ class Map{
     
         Map();
         void draw(const Player& player, const std::vector<Monster>& monsters) const;
+        bool isGoal(int x, int y) const;
         bool isMonster(int x, int y, const std::vector<Monster>& monsters) const;
         bool isWall (int x, int y) const;
 };
