@@ -36,15 +36,31 @@ void Game::handleInput(char c) {
         player.move(targetX, targetY);
 }
 
+bool Game::gotHit() {
+
+    for (const auto& m : monsters) {
+        if (player.getX() == m.getX() && player.getY() == m.getY())
+            return true;
+    }
+    return false;
+}
+
 void Game::run() {
 
     while (running) {
 
-        map.draw(player);
+        Monster m1{4, 1};
+        monsters.push_back(m1);
+        map.draw(player, monsters);
         char input;
         std::cin >> input;
         handleInput(input);
-        for (int i{0}; i < 50; ++i)
-            std::cout << '\n';
+        if (gotHit()) {
+            std::cout << "==========YOU DIED==========\n";
+            running = false;
+        } else {
+            for (int i{0}; i < 50; ++i)
+                std::cout << '\n';
+        }
     }
 }

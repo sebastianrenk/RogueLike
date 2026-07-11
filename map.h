@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include "player.h"
+#include "monster.h"
 
 #ifndef MAP_H
 #define MAP_H
@@ -13,8 +14,9 @@ class Map{
     public:
     
         Map();
-        void draw(const Player& player) const;
-        bool isWall (int x, int y);
+        void draw(const Player& player, const std::vector<Monster>& monsters) const;
+        bool isMonster(int x, int y, const std::vector<Monster>& monsters) const;
+        bool isWall (int x, int y) const;
 };
 
 
