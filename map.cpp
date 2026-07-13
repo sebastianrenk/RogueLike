@@ -1,15 +1,9 @@
 #include "map.h"
 #include "player.h"
 
-Map::Map(std::vector<std::string> tiles) : layout{
+Map::Map(std::vector<std::string> layout) : 
 
-    "##########",
-    "#........#",
-    "#........#",
-    "#.......X#",
-    "##########"
-    
-} {}
+    layout{layout} {}
 
 void Map::draw(const Player& player, const std::vector<Monster>& monsters) const {
 

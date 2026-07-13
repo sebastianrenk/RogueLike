@@ -2,9 +2,11 @@
 #include "monster.h"
 #include "player.h"
 #include "map.h"
+#include "level.h"
 
 class Game {
-
+    
+    Level level;
     Map map;
     Player player;
     std::vector<Monster> monsters;
@@ -12,7 +14,7 @@ class Game {
 
     public: 
         
-        Game(Map map, bool running = true);
+        Game(Level& level, bool running = true);
         void handleInput(char c);
         void run();
         bool gotHit() const;

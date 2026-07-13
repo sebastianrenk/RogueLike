@@ -1,8 +1,11 @@
 #include "game.h"
 
-Game::Game(Map map, bool running) :
+Game::Game(Level& level, bool running) :
 
-    map{map},
+    level{level},
+    map{level.getLayout()},
+    player{level.getStartX(), level.getStartY()},
+    monsters{level.getMonsters()},
     running{running} {}
 
 
@@ -57,8 +60,6 @@ void Game::run() {
 
     while (running) {
 
-        Monster m1{4, 1};
-        monsters.push_back(m1);
         map.draw(player, monsters);
         char input;
         std::cin >> input;
