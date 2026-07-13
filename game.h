@@ -7,7 +7,8 @@
 
 class Game {
     
-    Level level;
+    std::vector<Level> levels;
+    int currentLevel;
     Map map;
     Player player;
     std::vector<Monster> monsters;
@@ -15,7 +16,8 @@ class Game {
 
     public: 
         
-        Game(Level& level, bool running = true);
+        Game(std::vector<Level> levels, int currentLevel = 0, bool running = true);
+        void loadLevel(int index);
         void handleInput(char c);
         void run();
         bool gotHit() const;

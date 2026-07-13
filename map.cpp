@@ -4,6 +4,10 @@ Map::Map(std::vector<std::string> layout) :
 
     layout{layout} {}
 
+Map::Map() : 
+    
+    layout{} {}
+
 void Map::draw(const Player& player, const std::vector<Monster>& monsters) const {
 
     for (int y{0}; y < layout.size(); ++y) {

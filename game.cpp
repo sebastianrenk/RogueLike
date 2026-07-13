@@ -1,13 +1,21 @@
 #include "game.h"
 
-Game::Game(Level& level, bool running) :
+Game::Game(std::vector<Level> levels, int currentLevel, bool running) :
 
-    level{level},
-    map{level.getLayout()},
-    player{level.getStartX(), level.getStartY()},
-    monsters{level.getMonsters()},
-    running{running} {}
+    levels{levels},
+    currentLevel{currentLevel},
+    running{running} {
 
+        loadLevel(0);
+    }
+
+
+void Game::loadLevel(int index) {
+
+    map = Map{levels.at(index).getLayout()};
+    player = Player{levels.at(index).getStartX(), levels.at(index).getStartY()};
+    monsters = std::vector<Monster>{levels.at(index).getMonsters()};
+}
 
 void Game::handleInput(char c) {
 
@@ -60,6 +68,7 @@ void Game::run() {
 
     while (running) {
 
+        std::cout << "========== Level " << currentLevel + 1 << " ==========\n";
         map.draw(player, monsters);
         char input;
         std::cin >> input;
@@ -70,7 +79,12 @@ void Game::run() {
             running = false;
         } else if (reachedGoal()) {
             std::cout << "========== YOU WON ==========\n";
-            running = false;
+            if (++currentLevel < levels.size()) {
+                loadLevel(currentLevel);
+            } else {
+                std::cout << "CONGRATULATIONS, YOU COMPLETED THE GAME\n";
+                running = false;
+            }
         } else {
             for (int i{0}; i < 50; ++i)
                 std::cout << '\n';
