@@ -12,7 +12,7 @@ class Game {
 
     public: 
         
-        Game(bool running = true);
+        Game(Map map, bool running = true);
         void handleInput(char c);
         void run();
         bool gotHit() const;

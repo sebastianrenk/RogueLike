@@ -9,11 +9,11 @@
 
 class Map{
 
-    std::vector<std::string> tiles;
+    std::vector<std::string> layout;
 
     public:
     
-        Map();
+        Map(std::vector<std::string> layout);
         void draw(const Player& player, const std::vector<Monster>& monsters) const;
         bool isGoal(int x, int y) const;
         bool isMonster(int x, int y, const std::vector<Monster>& monsters) const;

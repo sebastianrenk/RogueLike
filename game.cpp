@@ -1,7 +1,8 @@
 #include "game.h"
 
-Game::Game(bool running) :
+Game::Game(Map map, bool running) :
 
+    map{map},
     running{running} {}
 
 
