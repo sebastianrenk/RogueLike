@@ -1,11 +1,10 @@
+#pragma once
+
 #include <iostream>
 #include <string>
 #include <vector>
 #include "player.h"
 #include "monster.h"
-
-#ifndef MAP_H
-#define MAP_H
 
 class Map{
 
@@ -19,9 +18,3 @@ class Map{
         bool isMonster(int x, int y, const std::vector<Monster>& monsters) const;
         bool isWall (int x, int y) const;
 };
-
-
-
-
-
-#endif

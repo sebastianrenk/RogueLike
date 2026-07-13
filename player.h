@@ -1,6 +1,4 @@
-#ifndef PLAYER_H
-#define PLAYER_H
-
+#pragma once
 
 class Player {
     
@@ -14,5 +12,3 @@ class Player {
         int getY() const {return y;};
         void move(int x, int y);
 };
-
-#endif

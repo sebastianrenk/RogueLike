@@ -1,5 +1,4 @@
 #include "map.h"
-#include "player.h"
 
 Map::Map(std::vector<std::string> layout) : 
 
