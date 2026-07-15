@@ -10,5 +10,5 @@ class Monster{
         Monster(int x, int y);
         int getX() const {return x;}
         int getY() const {return y;}
-        void set(int x, int y);
+        void move(int x, int y);
 };

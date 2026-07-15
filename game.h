@@ -1,5 +1,6 @@
 #pragma once
 
+#include <random>
 #include "monster.h"
 #include "player.h"
 #include "map.h"
@@ -22,4 +23,5 @@ class Game {
         void run();
         bool gotHit() const;
         bool reachedGoal() const;
+        void moveMonsters();
 };

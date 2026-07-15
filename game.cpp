@@ -64,6 +64,38 @@ bool Game::reachedGoal() const {
     return false;
 }
 
+void Game::moveMonsters() {
+
+    for (auto& m : monsters) {
+        int targetX{m.getX()};
+        int targetY{m.getY()};
+
+        int random{rand() % 4};
+
+        switch(random) {
+            case 0:
+                targetX += 0;
+                targetY += -1;
+                break;
+            case 1:
+                targetX += -1;
+                targetY += 0;
+                break;
+            case 2:
+                targetX += 0;
+                targetY += 1;
+                break;
+            case 3:
+                targetX += 1;
+                targetY += 0;
+                break;
+        }
+
+    if (!map.isWall(targetX, targetY))
+        m.move(targetX, targetY);
+    }
+}
+
 void Game::run() {
 
     while (running) {
@@ -73,6 +105,7 @@ void Game::run() {
         char input;
         std::cin >> input;
         handleInput(input);
+        moveMonsters();
         
         if (gotHit()) {
             std::cout << "========== YOU DIED ==========\n";
