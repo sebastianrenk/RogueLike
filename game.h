@@ -18,7 +18,7 @@ class Game {
 
     public: 
         
-        Game(std::vector<Level> levels, int currentLevel = 0, bool running = true, int lives = 3);
+        Game(std::vector<Level> levels, int currentLevel = 0, bool running = true, int lives = 5);
         void loadLevel(int index);
         void handleInput(char c);
         void run();
