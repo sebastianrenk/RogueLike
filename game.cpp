@@ -1,10 +1,11 @@
 #include "game.h"
 
-Game::Game(std::vector<Level> levels, int currentLevel, bool running) :
+Game::Game(std::vector<Level> levels, int currentLevel, bool running, int lives) :
 
     levels{levels},
     currentLevel{currentLevel},
-    running{running} {
+    running{running},
+    lives{lives} {
 
         loadLevel(0);
     }
@@ -101,6 +102,7 @@ void Game::run() {
     while (running) {
 
         std::cout << "========== Level " << currentLevel + 1 << " ==========\n";
+        std::cout << "========== Health " << lives << " ==========\n\n";
         map.draw(player, monsters);
         char input;
         std::cin >> input;
@@ -108,14 +110,22 @@ void Game::run() {
         moveMonsters();
         
         if (gotHit()) {
-            std::cout << "========== YOU DIED ==========\n";
-            running = false;
+            if (--lives > 0) {
+                for (int i{0}; i < 50; ++i)
+                    std::cout << '\n';
+                std::cout << "========== HEALTH DECREASED ==========\n\n";
+                loadLevel(currentLevel);
+            } 
+            else {
+                std::cout << "========== GAME OVER ==========\n";
+                running = false;
+            }
         } else if (reachedGoal()) {
-            std::cout << "========== YOU WON ==========\n";
+            std::cout << "========== LEVEL COMPLETED ==========\n\n";
             if (++currentLevel < levels.size()) {
                 loadLevel(currentLevel);
             } else {
-                std::cout << "CONGRATULATIONS, YOU COMPLETED THE GAME\n";
+                std::cout << "CONGRATULATIONS, YOU WON THE GAME\n";
                 running = false;
             }
         } else {
